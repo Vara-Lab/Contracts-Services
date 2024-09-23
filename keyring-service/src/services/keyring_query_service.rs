@@ -1,3 +1,5 @@
+use core::borrow::Borrow;
+
 // necesary crates
 use sails_rs::{
     prelude::*,
@@ -12,7 +14,7 @@ use crate::state::{
 // Struct KeyringQueryService that will be used for all queries
 // Data is passed to the service as Ref (query, does not change state)
 pub struct KeyringQueryService<'a> {
-    keyring_state_ref: Ref<'a, KeyringAccounts>
+    pub keyring_state_ref: Ref<'a, KeyringAccounts>
 }
 
 #[service]
@@ -84,4 +86,14 @@ pub enum KeyringQueryEvent {
     LastWhoCall(ActorId),
     SignlessAccountAddress(Option<ActorId>),
     SignlessAccountData(Option<KeyringData>),
+}
+
+// Impl to clone Ref of the state
+impl<'a> Clone for KeyringQueryService<'a> {
+    fn clone(&self) -> Self {
+        let keyring_state_ref = Ref::clone(&self.keyring_state_ref);
+        KeyringQueryService {
+            keyring_state_ref
+        }
+    }
 }

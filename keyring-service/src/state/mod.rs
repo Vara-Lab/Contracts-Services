@@ -1,13 +1,14 @@
 use sails_rs::{
     prelude::*,
-    collections::HashMap
+    collections::HashMap,
+    cell::RefMut
 };
 
 use crate::service_enums::KeyringError;
 
 /// # Struct to manage keyrings account
 /// Handles all walletless and signless accounts
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct KeyringAccounts {
     /// Binds the wallet user address with the keyring address (signless)
     pub keyring_accounts_address_by_user_address: HashMap<ActorId, ActorId>,
