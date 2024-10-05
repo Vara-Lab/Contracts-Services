@@ -10,7 +10,7 @@ use crate::state::{
 #[derive(Default)]
 pub struct KeyringQueryService;
 
-// #[service]
+#[service]
 impl KeyringQueryService {
     // Service constructor
     pub fn new() -> Self {
