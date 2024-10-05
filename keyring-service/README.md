@@ -2,7 +2,7 @@
 
 This service is intended to be used in existing contracts with Sails.
 
-This service manages the signless and walletless feature, storing the keyring locked account in the contract. It gives an struct that handles all parts of this feature, this struct need to be stored in the state of the contract as a part of the program (**RefCell**) to be used.
+This service manages the signless and walletless feature, storing the keyring locked account in the contract. It gives an struct that handles all parts of this feature, this struct can help you manage both features if you will implement the signless or walletless verification in your services.
 
 ## Services
 

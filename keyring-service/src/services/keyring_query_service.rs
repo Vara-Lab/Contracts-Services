@@ -1,8 +1,5 @@
 // necesary crates
-use sails_rs::{
-    prelude::*,
-    cell::Ref
-};
+use sails_rs::prelude::*;
 
 use crate::state::{
     KeyringAccounts,
@@ -10,20 +7,14 @@ use crate::state::{
 };
 
 // Struct KeyringQueryService that will be used for all queries
-// Data is passed to the service as Ref (query, does not change state)
-pub struct KeyringQueryService<'a> {
-    pub keyring_state_ref: Ref<'a, KeyringAccounts>
-}
+#[derive(Default)]
+pub struct KeyringQueryService;
 
-#[service]
-impl<'a> KeyringQueryService<'a> {
+// #[service]
+impl KeyringQueryService {
     // Service constructor
-    pub fn new(
-        keyring_state_ref: Ref<'a, KeyringAccounts>
-    ) -> Self {
-        Self {
-            keyring_state_ref
-        }
+    pub fn new() -> Self {
+        Self 
     }
 
     // Remote call "keyring_address_from_user_address" exposed to external consumenrs
@@ -34,7 +25,7 @@ impl<'a> KeyringQueryService<'a> {
         &self,
         user_address: ActorId
     ) -> KeyringQueryEvent {
-        let keyring_address = self.keyring_state_ref
+        let keyring_address = KeyringAccounts::state_ref()
             .keyring_accounts_address_by_user_address
             .get(&user_address);
 
@@ -49,7 +40,7 @@ impl<'a> KeyringQueryService<'a> {
         &self,
         user_coded_name: String
     ) -> KeyringQueryEvent {
-        let keyring_address = self.keyring_state_ref
+        let keyring_address = KeyringAccounts::state_ref()
             .keyring_accounts_address_by_user_coded_name
             .get(&user_coded_name);
 
@@ -64,7 +55,7 @@ impl<'a> KeyringQueryService<'a> {
         &self,
         keyring_address: ActorId
     ) -> KeyringQueryEvent {
-        let signless_data = self.keyring_state_ref
+        let signless_data = KeyringAccounts::state_ref()
             .keyring_data_by_keyring_address
             .get(&keyring_address);
 
@@ -86,12 +77,12 @@ pub enum KeyringQueryEvent {
     SignlessAccountData(Option<KeyringData>),
 }
 
-// Impl to clone Ref of the state
-impl<'a> Clone for KeyringQueryService<'a> {
-    fn clone(&self) -> Self {
-        let keyring_state_ref = Ref::clone(&self.keyring_state_ref);
-        KeyringQueryService {
-            keyring_state_ref
-        }
-    }
-}
+// // Impl to clone Ref of the state
+// impl<'a> Clone for KeyringQueryService<'a> {
+//     fn clone(&self) -> Self {
+//         let keyring_state_ref = Ref::clone(&self.keyring_state_ref);
+//         KeyringQueryService {
+//             keyring_state_ref
+//         }
+//     }
+// }

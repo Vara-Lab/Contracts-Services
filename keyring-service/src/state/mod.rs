@@ -5,6 +5,8 @@ use sails_rs::{
 
 use crate::service_enums::KeyringError;
 
+pub static mut KEYRING_SERVICE_STATE: Option<KeyringAccounts> = None;
+
 /// # Struct to manage keyrings account
 /// Handles all walletless and signless accounts
 #[derive(Default, Clone)]
@@ -19,6 +21,27 @@ pub struct KeyringAccounts {
 
 /// ## Methods to manage keyring accounts
 impl KeyringAccounts {
+    /// ## Related function to init the state
+    pub fn init_state() {
+        unsafe {
+            KEYRING_SERVICE_STATE = Some(Self::default())
+        };
+    }
+
+    /// ### Get the keyring service state as ref
+    pub fn state_ref() -> &'static KeyringAccounts {
+        let state = unsafe { KEYRING_SERVICE_STATE.as_ref() };
+        debug_assert!(state.is_some(), "State is not initialized!");
+        unsafe { state.unwrap_unchecked() }
+    }
+
+    /// ### Get the keyring service state as mut
+    pub fn state_mut() -> &'static mut KeyringAccounts {
+        let state = unsafe { KEYRING_SERVICE_STATE.as_mut() };
+        debug_assert!(state.is_some(), "State is not initialized!");
+        unsafe { state.unwrap_unchecked() }
+    }
+
     /// ### Verify that the keyring address is linked to the user's address
     pub fn check_keyring_address_by_user_address(
         &self,

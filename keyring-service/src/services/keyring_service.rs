@@ -1,7 +1,4 @@
-use sails_rs::{
-    prelude::*,
-    cell::RefMut
-};
+use sails_rs::prelude::*;
 use gstd::msg;
 
 use crate::state::{
@@ -10,17 +7,21 @@ use crate::state::{
 };
 use crate::service_enums::KeyringError;
 
-pub struct KeyringService<'a> {
-    state: RefMut<'a, KeyringAccounts>
-}
+#[derive(Default)]
+pub struct KeyringService;
 
 #[service]
-impl<'a> KeyringService<'a> {
+impl KeyringService {
+    /// # Init the state of the services
+    /// IMPORTANT: this related function need to be called in the program 
+    /// constructor, this initializes the state
+    pub fn seed() {
+        KeyringAccounts::init_state();
+    }
+
     // Service "Constructor"
-    pub fn new(state: RefMut<'a, KeyringAccounts>) -> Self {
-        Self {
-            state
-        }
+    pub fn new() -> Self {
+        Self
     }
 
     /// ## Binds keyring data to an user address (command method - changes states)
@@ -35,7 +36,7 @@ impl<'a> KeyringService<'a> {
     ) -> KeyringEvent {
         let keyring_address = msg::source();
 
-        let result = self.state
+        let result = KeyringAccounts::state_mut()
             .set_keyring_account_to_user_coded_name(
                 keyring_address, 
                 user_coded_name, 
@@ -60,7 +61,7 @@ impl<'a> KeyringService<'a> {
     ) -> KeyringEvent {
         let keyring_address: ActorId = msg::source().into();
 
-        let result = self.state
+        let result = KeyringAccounts::state_mut()
             .set_keyring_account_to_user_coded_name(
                 keyring_address, 
                 no_wallet_account, 
