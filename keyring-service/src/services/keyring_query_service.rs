@@ -1,5 +1,3 @@
-use core::borrow::Borrow;
-
 // necesary crates
 use sails_rs::{
     prelude::*,

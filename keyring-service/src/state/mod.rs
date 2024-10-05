@@ -1,7 +1,6 @@
 use sails_rs::{
     prelude::*,
-    collections::HashMap,
-    cell::RefMut
+    collections::HashMap
 };
 
 use crate::service_enums::KeyringError;
