@@ -14,9 +14,9 @@ dependencies = [
 
 [[package]]
 name = "actor-system-error"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1eb5258a94e99e07bab9a07541505f5d02d492c1de06b115b662f1a794ce37b7"
+checksum = "0de4db0adcb7c872b5bf6218459a36a86d9708f691ebb449c4135e6f6353906e"
 dependencies = [
  "derive_more",
 ]
@@ -106,55 +106,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d52a9bb7ec0cf484c551830a7ce27bd20d67eac647e1befb56b0be4ee39a55d2"
 dependencies = [
  "winapi",
-]
-
-[[package]]
-name = "anstream"
-version = "0.6.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "64e15c1ab1f89faffbf04a634d5e1962e9074f2741eef6d97f3c4e322426d526"
-dependencies = [
- "anstyle",
- "anstyle-parse",
- "anstyle-query",
- "anstyle-wincon",
- "colorchoice",
- "is_terminal_polyfill",
- "utf8parse",
-]
-
-[[package]]
-name = "anstyle"
-version = "1.0.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1bec1de6f59aedf83baf9ff929c98f2ad654b97c9510f4e70cf6f661d49fd5b1"
-
-[[package]]
-name = "anstyle-parse"
-version = "0.2.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eb47de1e80c2b463c735db5b217a0ddc39d612e7ac9e2e96a5aed1f57616c1cb"
-dependencies = [
- "utf8parse",
-]
-
-[[package]]
-name = "anstyle-query"
-version = "1.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6d36fc52c7f6c869915e99412912f22093507da8d9e942ceaf66fe4b7c14422a"
-dependencies = [
- "windows-sys 0.52.0",
-]
-
-[[package]]
-name = "anstyle-wincon"
-version = "3.0.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5bf74e1b6e971609db8ca7a9ce79fd5768ab6ae46441c572e46cf596f59e57f8"
-dependencies = [
- "anstyle",
- "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -465,12 +416,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "colorchoice"
-version = "1.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d3fd119d74b830634cea2a0f58bbd0d54540518a14397557951e79340abc28c0"
-
-[[package]]
 name = "colored"
 version = "2.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -555,9 +500,9 @@ checksum = "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b"
 
 [[package]]
 name = "core-processor"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2288511615ff82c7c5b076599993689eed5e3cd5949aaddab2d4ed5cc1b33583"
+checksum = "ff1bf6a5bc2a30f286b909c324a393e141b0c37ebe00fbaef96f3fb394316f0f"
 dependencies = [
  "actor-system-error",
  "derive_more",
@@ -1163,16 +1108,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "env_filter"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f2c92ceda6ceec50f43169f9ee8424fe2db276791afde7b2cd8bc084cb376ab"
-dependencies = [
- "log",
- "regex",
-]
-
-[[package]]
 name = "env_logger"
 version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1183,19 +1118,6 @@ dependencies = [
  "log",
  "regex",
  "termcolor",
-]
-
-[[package]]
-name = "env_logger"
-version = "0.11.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e13fa619b91fb2381732789fc5de83b45675e882f66623b7d8cb4f643017018d"
-dependencies = [
- "anstream",
- "anstyle",
- "env_filter",
- "humantime",
- "log",
 ]
 
 [[package]]
@@ -1538,31 +1460,30 @@ dependencies = [
 
 [[package]]
 name = "galloc"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b7021443741e4bfcd99d37fa6c321b205d7c696b2084fd3e10cf79f89fda6a48"
+checksum = "301a357daab48a9b1f3439473efdd9a158e919cad990dc13279d8e7db3071032"
 dependencies = [
  "gear-dlmalloc",
 ]
 
 [[package]]
 name = "gcore"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0bdb11c2fe9c5e92615a7ea4b188408bfbe557c47809c7adeefc018efdf707d"
+checksum = "ec6489d21c1a2c20fa5d00399e7f6580b63b68b2262b1bb7a1646c3a8cd61fee"
 dependencies = [
  "gear-core-errors",
  "gear-stack-buffer",
  "gprimitives",
  "gsys",
- "parity-scale-codec",
 ]
 
 [[package]]
 name = "gear-common"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a409f727f630385f9bf74311855b2e0799995bba51cda69ef235d42240974e34"
+checksum = "0df197473ad06dc48f6ed23dac853a8be3582049f745c9997f7573367d82d23a"
 dependencies = [
  "derive_more",
  "enum-iterator 1.5.0",
@@ -1583,9 +1504,9 @@ dependencies = [
 
 [[package]]
 name = "gear-common-codegen"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "16bb9f537b64855446386f8c4cb86ecba2b64425e142a16663eca8bf97aa783e"
+checksum = "f581651ea0ffc27f35d79b79e95654128a3ab020a652a8cf4657ac5e9c98731b"
 dependencies = [
  "quote",
  "syn 2.0.77",
@@ -1593,9 +1514,9 @@ dependencies = [
 
 [[package]]
 name = "gear-core"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c68bf85cb337a1e7fbe0042318114f00a5868b2a803e34eb693f415558c19f7"
+checksum = "fa711571a19e4fc64b405e2c9e8818cef3e17d08323d1665ae1687d337bb8084"
 dependencies = [
  "blake2",
  "byteorder",
@@ -1605,8 +1526,10 @@ dependencies = [
  "gear-wasm-instrument",
  "gprimitives",
  "gsys",
+ "gwasm-instrument",
  "hashbrown 0.14.5",
  "hex",
+ "impl-serde",
  "log",
  "num-traits",
  "numerated",
@@ -1620,9 +1543,9 @@ dependencies = [
 
 [[package]]
 name = "gear-core-backend"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0c195e4130570329dd79a50bac136611561797bf482aed026ce8764f980ae60"
+checksum = "de09dc2407e84a58531bc3d068bab2a81fe95545c0457e2b1e749376f507f687"
 dependencies = [
  "actor-system-error",
  "blake2",
@@ -1640,9 +1563,9 @@ dependencies = [
 
 [[package]]
 name = "gear-core-errors"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9a77d479f7b3d05e9a071990f9c593af793dc7bbb2f2f6bd6f3f390c996ffe8b"
+checksum = "b547cf9ec64548f796d98fd7f3eb41ea8a34020610105e9aa062add14d3bca49"
 dependencies = [
  "derive_more",
  "enum-iterator 1.5.0",
@@ -1665,9 +1588,9 @@ dependencies = [
 
 [[package]]
 name = "gear-lazy-pages"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c0fafc7d13b103247457b167d5e01a7710fb64f37a8a6e229b641c2cd306b1d"
+checksum = "3a04cd0429a57a1d558927520a0e972c81af13f9dc083398f441deac25df3ddb"
 dependencies = [
  "cfg-if",
  "derive_more",
@@ -1687,9 +1610,9 @@ dependencies = [
 
 [[package]]
 name = "gear-lazy-pages-common"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "46e24529e9096ecfe329c2beed807e8f4edceb0a398f1db08ba9295fafe1342c"
+checksum = "c544f24f27d8e31f8dd41fbd036fea8520f5623b6bfb30d86cd79a9e36d381ab"
 dependencies = [
  "gear-core",
  "num_enum",
@@ -1698,21 +1621,22 @@ dependencies = [
 
 [[package]]
 name = "gear-lazy-pages-native-interface"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "df8b5fe33f33a1e63d11f8191738c1aab5ea850bc717f8b8d71bb80092d233ee"
+checksum = "a2adc4bcba55da440c060c1250cf1c67f9a7ac216299499f66df3a15935fc120"
 dependencies = [
  "gear-core",
  "gear-lazy-pages",
  "gear-lazy-pages-common",
  "gear-wasm-instrument",
+ "log",
 ]
 
 [[package]]
 name = "gear-sandbox"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42a11eada83003e5d51ec0a63ab834161ff0eed9ff98efd774e72095e059d3e9"
+checksum = "83c2a53baafb68b93d7ab36ac43cac35e0b8d8b21de1ec097f5649331310d0bb"
 dependencies = [
  "gear-sandbox-env",
  "gear-sandbox-interface",
@@ -1726,9 +1650,9 @@ dependencies = [
 
 [[package]]
 name = "gear-sandbox-env"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b8e85693d331cd75effed01ecaeccc6ae28e137e454b020dc341829c9c74e3e"
+checksum = "6964bbd821d42bc907ad9cf0b684e957d93d8d3ac3eb7ae250464c532407d125"
 dependencies = [
  "parity-scale-codec",
  "sp-debug-derive",
@@ -1738,9 +1662,9 @@ dependencies = [
 
 [[package]]
 name = "gear-sandbox-host"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f32c58ae124e317637cbd9061b1025d9af61525edc3d807c19cad60706f6dd42"
+checksum = "6b0bfa4e9b4ee2c2f7447c856a587b1d47071c85b7648c413ec30bd1ed0bad77"
 dependencies = [
  "defer",
  "environmental",
@@ -1760,9 +1684,9 @@ dependencies = [
 
 [[package]]
 name = "gear-sandbox-interface"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7df54d27cbe4c7778236c788c01fa30072af4f8040f1dfcd864a431402ab61e8"
+checksum = "067bcfa0149372fbef937bf8ac5eeedead7c91e8dbe0d0f9e17140b6edecff02"
 dependencies = [
  "gear-sandbox-host",
  "gp-runtime-interface",
@@ -1773,9 +1697,9 @@ dependencies = [
 
 [[package]]
 name = "gear-ss58"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4325383bd3d43aaa5d50b608ed7e5044110b5ccf91df351edb66ee4462f61f1f"
+checksum = "c9a1e105c62afc58ca4d34614191906df050ef5853ef6b02a8120d383299c958"
 dependencies = [
  "blake2",
  "bs58 0.5.1",
@@ -1784,17 +1708,17 @@ dependencies = [
 
 [[package]]
 name = "gear-stack-buffer"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3860391a8c1c273786958b5076a406d0ecd8e73636eb4161a6c3e1ea548ab9b"
+checksum = "32ede9a87b2cbae9ac705c78a5914b1f81cd759ad361d0252986efedb5baaf99"
 
 [[package]]
 name = "gear-utils"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ca1c5b08aa64916b9719f821ef61f52d262548ec5e5a7d9d42cf6b035fa4e04"
+checksum = "b659865da8f51ada4bbdac37768ad52e29f92dc323ae5332ffe68d52df2ed1b8"
 dependencies = [
- "env_logger 0.10.2",
+ "env_logger",
  "gear-core",
  "hex",
  "nonempty",
@@ -1812,9 +1736,9 @@ checksum = "bbfbfa701dc65e683fcd2fb24f046bcef22634acbdf47ad14724637dc39ad05b"
 
 [[package]]
 name = "gear-wasm-instrument"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8446dc4b4dc7a1fc30f1c4bd1a0e7bcee7d5e5f9d1edd1f99d96b73a4ff8cc4"
+checksum = "220bde6961e65ad1cb245ad3d318b048b9f9ef66450f4f2b0670b7eb1e4697cf"
 dependencies = [
  "derive_more",
  "enum-iterator 1.5.0",
@@ -1964,9 +1888,9 @@ dependencies = [
 
 [[package]]
 name = "gprimitives"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68d4985924d3c23a78cbc70d1bb4f0b01aa3a4ea95609b15434eb1a487dfbb15"
+checksum = "f20bfda31f01fc28e78dc15b31d65048d47703a5f828225cb8a8f7ebfa4863ec"
 dependencies = [
  "derive_more",
  "gear-ss58",
@@ -1989,9 +1913,9 @@ dependencies = [
 
 [[package]]
 name = "gstd"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f1d0f71187a65f4af14b03ceb0d5b0c1de87174ba77478496cc5bd744d096200"
+checksum = "7d41680d024c8afd92d3060a08babaaf745289b5042ee863c382586ce4b8dbdb"
 dependencies = [
  "arrayvec 0.7.6",
  "const_format",
@@ -2008,9 +1932,9 @@ dependencies = [
 
 [[package]]
 name = "gstd-codegen"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8c89587bbe369ed78ae2b228a4ac4a92349946cd5305dbb9b8b321c2e85bb452"
+checksum = "af6abd3b1b6998587293692288058f2ce22874fff0c613a54eb7ea131553527b"
 dependencies = [
  "gprimitives",
  "proc-macro2",
@@ -2020,21 +1944,21 @@ dependencies = [
 
 [[package]]
 name = "gsys"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d2c857620fd28f327ce1fa479ec1b473523e7e636201a71f11865e36055e34fc"
+checksum = "a50c2bb3140c4282563ca20cf129ed2dc2457164d70a06839e3233e15fb86cb1"
 
 [[package]]
 name = "gtest"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "21ef2bae5647ecdc875ac90b8c6ac1d4549041b10149bb7af37a6f4403242e1a"
+checksum = "b43ae381f86f69ba8008d6f52497f32e1fd5a40e1b3de5a6a9bd2f3856501b37"
 dependencies = [
  "cargo_toml",
  "colored",
  "core-processor",
  "derive_more",
- "env_logger 0.10.2",
+ "env_logger",
  "etc",
  "gear-common",
  "gear-core",
@@ -2329,12 +2253,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "is_terminal_polyfill"
-version = "1.70.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7943c866cc5cd64cbc25b2e01621d07fa8eb2a1a23160ee81ce38704e97b8ecf"
-
-[[package]]
 name = "itertools"
 version = "0.10.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2384,7 +2302,6 @@ dependencies = [
 name = "keyring-service"
 version = "0.1.0"
 dependencies = [
- "env_logger 0.11.5",
  "gear-core",
  "gstd",
  "gtest",
@@ -2795,9 +2712,9 @@ dependencies = [
 
 [[package]]
 name = "numerated"
-version = "1.5.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef64a6c05dfdaec4c4b01f22d618c5dec9ec3f6a6611076d2d7b3fb63549f356"
+checksum = "1d8d48e7584ce7c716004305eb848651830f50382da400592b4ea4a139792af3"
 dependencies = [
  "derive_more",
  "num-traits",
@@ -3412,9 +3329,9 @@ checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
 
 [[package]]
 name = "sails-macros"
-version = "0.4.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4efcda7e656871d17e79259110a6b17d0d660e2ab3f949a91d55c165bcbd4d0d"
+checksum = "f44fcf1c0329e95c89442ca17b5c651235a4af65d22bb4dac380da9efd7c77a5"
 dependencies = [
  "proc-macro-error",
  "sails-macros-core",
@@ -3422,9 +3339,9 @@ dependencies = [
 
 [[package]]
 name = "sails-macros-core"
-version = "0.4.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3694ccad10e20282caf8111c39382c3e1f00433c5f0c48d4592e1f201b82f598"
+checksum = "27e84cea1b4d7c1296070633bb492823995b66ea890a52dd4b96ac553c2f9844"
 dependencies = [
  "convert_case 0.6.0",
  "parity-scale-codec",
@@ -3436,9 +3353,9 @@ dependencies = [
 
 [[package]]
 name = "sails-rs"
-version = "0.4.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "67effccdaef6232976af5cabf54775bd57e362b09e201ceb5e732f8dd7194c9c"
+checksum = "d2fec1f833069aafd828ae5d5d8254004cad1579679fdb47dba082f3dcdaa214"
 dependencies = [
  "futures",
  "gear-core",
@@ -4686,12 +4603,6 @@ dependencies = [
  "idna",
  "percent-encoding",
 ]
-
-[[package]]
-name = "utf8parse"
-version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06abde3611657adf66d383f00b093d7faecc7fa57071cce2578660c9f1010821"
 
 [[package]]
 name = "uuid"

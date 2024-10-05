@@ -4,10 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-gstd = "1.5.0"
-sails-rs = "0.4.0"
+gstd = "=1.6.1"
+sails-rs = "=0.6.0"
 
 [dev-dependencies]
-env_logger = "*"
-gtest = "1.5.0"
-gear-core = "1.5.0"
+gtest = "=1.6.1"
+gear-core = "=1.6.1"
