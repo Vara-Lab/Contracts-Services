@@ -7,7 +7,7 @@ use crate::state::{
 };
 use crate::service_enums::KeyringError;
 
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct KeyringService;
 
 #[service]

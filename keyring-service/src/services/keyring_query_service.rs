@@ -7,7 +7,7 @@ use crate::state::{
 };
 
 // Struct KeyringQueryService that will be used for all queries
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct KeyringQueryService;
 
 #[service]
