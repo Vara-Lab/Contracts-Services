@@ -33,15 +33,15 @@ impl KeyringService {
     // Returns the keyring address from an user address
     pub fn bind_keyring_data_to_user_address(
         &mut self,
-        user_coded_name: String,
+        user_address: ActorId,
         keyring_data: KeyringData
     ) -> KeyringEvent {
         let keyring_address = msg::source();
 
         let result = KeyringAccounts::state_mut()
-            .set_keyring_account_to_user_coded_name(
+            .set_keyring_account_to_user_address(
                 keyring_address, 
-                user_coded_name, 
+                user_address, 
                 keyring_data
             );
         
@@ -58,7 +58,7 @@ impl KeyringService {
     // Returns the keyring address from an user coded name
     pub fn bind_keyring_data_to_user_coded_name(
         &mut self,
-        no_wallet_account: String,
+        user_coded_name: String,
         keyring_data: KeyringData
     ) -> KeyringEvent {
         let keyring_address: ActorId = msg::source().into();
@@ -66,7 +66,7 @@ impl KeyringService {
         let result = KeyringAccounts::state_mut()
             .set_keyring_account_to_user_coded_name(
                 keyring_address, 
-                no_wallet_account, 
+                user_coded_name, 
                 keyring_data
             );
 
