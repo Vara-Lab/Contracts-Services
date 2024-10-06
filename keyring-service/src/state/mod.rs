@@ -7,42 +7,46 @@ use crate::service_enums::KeyringError;
 
 pub static mut KEYRING_SERVICE_STATE: Option<KeyringAccounts> = None;
 
-/// # Struct to manage keyrings account
-/// Handles all walletless and signless accounts
+// # Struct to manage keyrings account
+// Handles all walletless and signless accounts
 #[derive(Default, Clone)]
 pub struct KeyringAccounts {
-    /// Binds the wallet user address with the keyring address (signless)
+    // Binds the wallet user address with the keyring address (signless)
     pub keyring_accounts_address_by_user_address: HashMap<ActorId, ActorId>,
-    /// Binds the user coded name with the keyring address (walletless)
+    // Binds the user coded name with the keyring address (walletless)
     pub keyring_accounts_address_by_user_coded_name: HashMap<String, ActorId>,
-    //// Binds the keyring address with its data (keyring encoded data)
+    // Binds the keyring address with its data (keyring encoded data)
     pub keyring_data_by_keyring_address: HashMap<ActorId, KeyringData>,
 }
 
-/// ## Methods to manage keyring accounts
+// Utils methods and related functions, used to init the state
+// and get the state as ref or mut
 impl KeyringAccounts {
-    /// ## Related function to init the state
+    // ## Related function to init the state
     pub fn init_state() {
         unsafe {
             KEYRING_SERVICE_STATE = Some(Self::default())
         };
     }
 
-    /// ### Get the keyring service state as ref
+    // ### Get the keyring service state as ref
     pub fn state_ref() -> &'static KeyringAccounts {
         let state = unsafe { KEYRING_SERVICE_STATE.as_ref() };
         debug_assert!(state.is_some(), "State is not initialized!");
         unsafe { state.unwrap_unchecked() }
     }
 
-    /// ### Get the keyring service state as mut
+    // ### Get the keyring service state as mut
     pub fn state_mut() -> &'static mut KeyringAccounts {
         let state = unsafe { KEYRING_SERVICE_STATE.as_mut() };
         debug_assert!(state.is_some(), "State is not initialized!");
         unsafe { state.unwrap_unchecked() }
     }
+}
 
-    /// ### Verify that the keyring address is linked to the user's address
+// ## Methods to manage keyring accounts
+impl KeyringAccounts {
+    // ### Verify that the keyring address is linked to the user's address
     pub fn check_keyring_address_by_user_address(
         &self,
         keyring_address: ActorId,
@@ -69,7 +73,7 @@ impl KeyringAccounts {
         Ok(())
     }
 
-    /// ### Verify that the keyring address is linked to the user's coded name
+    // ### Verify that the keyring address is linked to the user's coded name
     pub fn check_keyring_address_by_user_coded_name(
         &self,
         keyring_address: ActorId,
@@ -90,8 +94,8 @@ impl KeyringAccounts {
         Ok(())
     }
 
-    /// ### Store the keyring data
-    /// Store and bind the given keyring data with the user's address
+    // ### Store the keyring data
+    // Store and bind the given keyring data with the user's address
     pub fn set_keyring_account_to_user_address(
         &mut self, 
         keyring_address: ActorId,
@@ -127,8 +131,8 @@ impl KeyringAccounts {
         Ok(())
     }
 
-    /// ### Store the keyring data
-    /// Store and bind the given keyring data with the user's address
+    // ### Store the keyring data
+    // Store and bind the given keyring data with the user's address
     pub fn set_keyring_account_to_user_coded_name(
         &mut self,
         keyring_address: ActorId,
@@ -164,10 +168,8 @@ impl KeyringAccounts {
     }
 }
 
-/// # Struct to store the locked keyring data
+// # Struct to store the locked keyring data
 #[derive(Encode, Decode, TypeInfo, Clone, Default)]
-#[codec(crate = sails_rs::scale_codec)]
-#[scale_info(crate = sails_rs::scale_info)]
 pub struct KeyringData {
     address: String,
     encoded: String,

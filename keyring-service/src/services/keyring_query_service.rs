@@ -1,5 +1,8 @@
 // necesary crates
-use sails_rs::prelude::*;
+use sails_rs::{
+    prelude::*,
+    gstd::service
+};
 
 use crate::state::{
     KeyringAccounts,
@@ -7,14 +10,14 @@ use crate::state::{
 };
 
 // Struct KeyringQueryService that will be used for all queries
-#[derive(Default, Clone)]
-pub struct KeyringQueryService;
+#[derive(Clone)]
+pub struct KeyringQueryService();
 
 #[service]
 impl KeyringQueryService {
     // Service constructor
     pub fn new() -> Self {
-        Self 
+        Self()
     }
 
     // Remote call "keyring_address_from_user_address" exposed to external consumenrs
@@ -69,20 +72,8 @@ impl KeyringQueryService {
 }
 
 #[derive(Encode, Decode, TypeInfo, Clone)]
-#[codec(crate = sails_rs::scale_codec)]
-#[scale_info(crate = sails_rs::scale_info)]
 pub enum KeyringQueryEvent {
     LastWhoCall(ActorId),
     SignlessAccountAddress(Option<ActorId>),
     SignlessAccountData(Option<KeyringData>),
 }
-
-// // Impl to clone Ref of the state
-// impl<'a> Clone for KeyringQueryService<'a> {
-//     fn clone(&self) -> Self {
-//         let keyring_state_ref = Ref::clone(&self.keyring_state_ref);
-//         KeyringQueryService {
-//             keyring_state_ref
-//         }
-//     }
-// }

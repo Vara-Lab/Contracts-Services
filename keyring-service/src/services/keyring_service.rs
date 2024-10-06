@@ -1,5 +1,7 @@
-use sails_rs::prelude::*;
-use gstd::msg;
+use sails_rs::{
+    prelude::*,
+    gstd::{msg, service}
+};
 
 use crate::state::{
     KeyringAccounts,
@@ -7,28 +9,28 @@ use crate::state::{
 };
 use crate::service_enums::KeyringError;
 
-#[derive(Default, Clone)]
-pub struct KeyringService;
+#[derive(Clone)]
+pub struct KeyringService();
 
 #[service]
 impl KeyringService {
-    /// # Init the state of the services
-    /// IMPORTANT: this related function need to be called in the program 
-    /// constructor, this initializes the state
+    // # Init the state of the services
+    // IMPORTANT: this related function need to be called in the program 
+    // constructor, this initializes the state
     pub fn seed() {
         KeyringAccounts::init_state();
     }
 
     // Service "Constructor"
     pub fn new() -> Self {
-        Self
+        Self()
     }
 
-    /// ## Binds keyring data to an user address (command method - changes states)
-    /// Remote call "keyring_address_from_user_address" exposed to external consumenrs
-    /// Returns an enum variant (from KeyringEvent) that will be sent as a response to the user
-    /// Is treated as a command, meaning that it will change the state (&mut self)
-    /// Returns the keyring address from an user address
+    // ## Binds keyring data to an user address (command method - changes states)
+    // Remote call "keyring_address_from_user_address" exposed to external consumenrs
+    // Returns an enum variant (from KeyringEvent) that will be sent as a response to the user
+    // Is treated as a command, meaning that it will change the state (&mut self)
+    // Returns the keyring address from an user address
     pub fn bind_keyring_data_to_user_address(
         &mut self,
         user_coded_name: String,
@@ -49,11 +51,11 @@ impl KeyringService {
         }
     }
 
-    /// ## Binds keyring data to an user coded name (command method - changes state)
-    /// Remote call "keyring_address_from_user_address" exposed to external consumenrs
-    /// Returns an enum variant (from KeyringEvent) that will be sent as a response to the user
-    /// Is treated as a command, meaning that it will change the state (&mut self)
-    /// Returns the keyring address from an user coded name
+    // ## Binds keyring data to an user coded name (command method - changes state)
+    // Remote call "keyring_address_from_user_address" exposed to external consumenrs
+    // Returns an enum variant (from KeyringEvent) that will be sent as a response to the user
+    // Is treated as a command, meaning that it will change the state (&mut self)
+    // Returns the keyring address from an user coded name
     pub fn bind_keyring_data_to_user_coded_name(
         &mut self,
         no_wallet_account: String,
@@ -76,9 +78,6 @@ impl KeyringService {
 }
 
 #[derive(Encode, Decode, TypeInfo, Clone)]
-#[codec(crate = sails_rs::scale_codec)]
-#[scale_info(crate = sails_rs::scale_info)]
-
 pub enum KeyringEvent {
     KeyringAccountSet,
     Error(KeyringError)

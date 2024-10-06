@@ -2305,7 +2305,9 @@ dependencies = [
  "gear-core",
  "gstd",
  "gtest",
+ "parity-scale-codec",
  "sails-rs",
+ "scale-info",
 ]
 
 [[package]]

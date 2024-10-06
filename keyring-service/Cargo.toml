@@ -6,6 +6,8 @@ edition = "2021"
 [dependencies]
 gstd = "=1.6.1"
 sails-rs = "=0.6.0"
+parity-scale-codec = { version = "3.6", default-features = false }
+scale-info = { version = "2.10", default-features = false }
 
 [dev-dependencies]
 gtest = "=1.6.1"
