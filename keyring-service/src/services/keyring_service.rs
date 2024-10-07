@@ -1,6 +1,6 @@
 use sails_rs::{
     prelude::*,
-    gstd::{msg, service}
+    gstd::msg
 };
 
 use crate::state::{

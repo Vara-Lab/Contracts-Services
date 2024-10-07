@@ -1,8 +1,5 @@
 // necesary crates
-use sails_rs::{
-    prelude::*,
-    gstd::service
-};
+use sails_rs::prelude::*;
 
 use crate::state::{
     KeyringAccounts,
