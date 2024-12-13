@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-gstd = "=1.6.2"
-sails-rs = "=0.6.1"
+gstd = "=1.7.0"
+sails-rs = "=0.7.1"
 parity-scale-codec = { version = "3.6", default-features = false }
-scale-info = { version = "2.10", default-features = false }
+scale-info = { version = "2.11.6", default-features = false }
 
 [dev-dependencies]
-gtest = "=1.6.2"
-gear-core = "=1.6.2"
+gtest = "=1.7.0"
+gear-core = "=1.7.0"
