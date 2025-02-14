@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 gstd = "=1.7.0"
-sails-rs = "=0.7.1"
+sails-rs = "=0.7.3"
 parity-scale-codec = { version = "3.6", default-features = false }
 scale-info = { version = "2.11.6", default-features = false }
 
