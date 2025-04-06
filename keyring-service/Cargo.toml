@@ -10,5 +10,5 @@ parity-scale-codec = { version = "3.6", default-features = false }
 scale-info = { version = "2.11.6", default-features = false }
 
 [dev-dependencies]
-gtest = "=1.7.0"
-gear-core = "=1.7.0"
+gtest = "=1.7.1"
+gear-core = "=1.7.1"

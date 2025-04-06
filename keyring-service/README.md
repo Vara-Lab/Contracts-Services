@@ -62,7 +62,7 @@ keyring-service.workspace = true
 2. Then, you only need to add the service as a method of the program to expose it to the consumers:
     
     ```rust
-    #[route("KeyringService")]
+    #[export(route = "KeyringService")]
     pub fn keyring_svc(&self) -> KeyringService {
         KeyringService::new()
     }
@@ -88,7 +88,7 @@ impl Program {
     // services ...
 
     // Keyring service
-    #[route("KeyringService")]
+    #[export(route = "KeyringService")]
     pub fn keyring_svc(&self) -> KeyringService {
         KeyringService::new()
     }
