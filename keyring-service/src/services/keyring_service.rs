@@ -7,7 +7,7 @@ use crate::state::{
     KeyringAccounts,
     KeyringData
 };
-use crate::service_enums::KeyringError;
+use crate::service_enums::*;
 
 #[derive(Clone)]
 pub struct KeyringService();
@@ -88,7 +88,8 @@ impl KeyringService {
             .keyring_accounts_address_by_user_address
             .get(&user_address);
 
-        KeyringQueryEvent::SignlessAccountAddress(keyring_address.copied())
+        // KeyringQueryEvent::SignlessAccountAddress(keyring_address.copied())
+        KeyringQueryEvent::KeyringAccountAddress(keyring_address.copied())
     }
     
     // Remote call "keyring_address_from_no_wallet_coded_name" exposed to external consumenrs
@@ -103,7 +104,7 @@ impl KeyringService {
             .keyring_accounts_address_by_user_coded_name
             .get(&user_coded_name);
 
-        KeyringQueryEvent::SignlessAccountAddress(keyring_address.copied())
+        KeyringQueryEvent::KeyringAccountAddress(keyring_address.copied())
     }
 
     // Remote call "keyring_account_data" exposed to external consumenrs
@@ -123,19 +124,6 @@ impl KeyringService {
             None => None
         };
 
-        KeyringQueryEvent::SignlessAccountData(response)
+        KeyringQueryEvent::KeyringAccountData(response)
     }
-}
-
-#[derive(Encode, Decode, TypeInfo, Clone)]
-pub enum KeyringEvent {
-    KeyringAccountSet,
-    Error(KeyringError)
-}
-
-#[derive(Encode, Decode, TypeInfo, Clone)]
-pub enum KeyringQueryEvent {
-    LastWhoCall(ActorId),
-    SignlessAccountAddress(Option<ActorId>),
-    SignlessAccountData(Option<KeyringData>),
 }
