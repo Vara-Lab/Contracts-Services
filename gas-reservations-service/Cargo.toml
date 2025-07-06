@@ -1,0 +1,15 @@
+[package]
+name = "gas-reservations-service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gstd = "1.8.1"
+sails-rs = "0.8.1"
+parity-scale-codec = { version = "3.6", default-features = false }
+scale-info = { version = "2.11.6", default-features = false }
+gear-contract-utils = { git = "https://github.com/Vara-Lab/Gear-Contract-Utils" }
+
+[dev-dependencies]
+gtest = "1.8.1"
+gear-core = "=1.8.1"
