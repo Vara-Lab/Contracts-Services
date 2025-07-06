@@ -3,7 +3,7 @@ use crate::state	::{
     GasReservationState,
     GasReservationData
 };
-use gear_contract_utils::utils;
+use vara_contract_utils::utils;
 
 #[derive(Default, Clone)]
 pub struct GasReservationService;

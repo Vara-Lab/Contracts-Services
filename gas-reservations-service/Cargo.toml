@@ -8,7 +8,7 @@ gstd = "1.8.1"
 sails-rs = "0.8.1"
 parity-scale-codec = { version = "3.6", default-features = false }
 scale-info = { version = "2.11.6", default-features = false }
-gear-contract-utils = { git = "https://github.com/Vara-Lab/Gear-Contract-Utils" }
+vara-contract-utils = { git = "https://github.com/Vara-Lab/Vara-Contract-Utils" }
 
 [dev-dependencies]
 gtest = "1.8.1"
