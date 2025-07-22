@@ -9,7 +9,6 @@ sails-rs = "0.8.1"
 parity-scale-codec = { version = "3.6", default-features = false }
 scale-info = { version = "2.11.6", default-features = false }
 vara-contract-utils = { git = "https://github.com/Vara-Lab/Vara-Contract-Utils" }
-# gbuiltin-staking = { git = "https://github.com/gear-tech/gear" }
 
 [dev-dependencies]
 gtest = "1.8.1"
