@@ -7,6 +7,8 @@ This service manages all the functionalities of the [staking built-in actor](htt
 
 You can even take only the service actions (`StakingActions`) to be able to implement them in your own services and thus modify how each of the processes will be managed, and if you want to have complete control, you can use the state (`StakingData`) to directly modify each value, controlling each time of unbond, bond, etc.
 
+> **IMPORTANT**: As a contract admin, you must [bond 50 tokens](https://wiki.vara.network/docs/staking) or more for the service to work properly, and for the contract to be able to stake correctly.
+
 ## Service
 
 You can find the `StakingService` service in the `src/services` directory. This service helps manage and store every action each user performs on the contract, and also provides sufficient information about each user, such as bonds they have made, unbonds, etc.
