@@ -71,7 +71,7 @@ impl StakingActions {
         let bond_data = BondData::new(value, current_active_era);
         let rebond_data = RebondData::new(value, current_active_era);
 
-        let _ = StakingActions::send_to_built_in_actor(value, payload).await?;
+        let _ = StakingActions::send_to_built_in_actor(0, payload).await?;
 
 
         user_data.new_rebond(rebond_id, bond_id, value)?;
