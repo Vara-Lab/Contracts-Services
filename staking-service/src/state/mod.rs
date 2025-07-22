@@ -180,20 +180,20 @@ impl StakingData {
 
         let mut pending_unbonds_id = Vec::new();
 
-        for bond_id in user_data.bond_data_ids.iter() {
-            if user_data.unbonds_already_withdrawn_by_id.contains(bond_id) {
+        for unbond_id in user_data.bond_data_ids.iter() {
+            if user_data.unbonds_already_withdrawn_by_id.contains(unbond_id) {
                 continue;
             }
 
             let unbond_data = self.unbonded_data
-                .get(bond_id)
+                .get(unbond_id)
                 .unwrap();
 
             if unbond_data.can_withdraw() {
                 continue;
             }
 
-            pending_unbonds_id.push(*bond_id);
+            pending_unbonds_id.push(*unbond_id);
         }
 
         let pending_unbonds = pending_unbonds_id
