@@ -3,6 +3,12 @@ use sails_rs::{
     gstd::exec
 };
 
+#[derive(Debug, Encode, Decode, TypeInfo)]
+pub struct BondDataIO {
+    pub data: BondData,
+    pub id: u64
+}
+
 #[derive(Debug, Encode, Decode, TypeInfo, Clone, Copy)]
 pub struct BondData {
     pub amount: u128,

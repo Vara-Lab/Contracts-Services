@@ -22,7 +22,7 @@ impl StakingActions {
             .get_mut(&address)
             .ok_or(StakingError::UserHasNoUnbonds)?;
 
-        if user_data.unbond_data_ids.contains(&unbond_id) {
+        if !user_data.unbond_data_ids.contains(&unbond_id) {
             return Err(StakingError::UnbondIdDoesNotExists);
         }
 

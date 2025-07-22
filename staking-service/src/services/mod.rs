@@ -7,7 +7,18 @@ use vara_contract_utils::utils;
 use crate::{
     service_enums::{
         built_in::RewardAccount, staking_errors::StakingError
-    }, service_types::{bond_data::BondData, staking_history::StakingHistory, unbond_data::UnbondData}, staking_actions::StakingActions, state::StakingData
+    }, 
+    service_types::{
+        bond_data::{
+            BondDataIO
+        }, 
+        staking_history::StakingHistory, 
+        unbond_data::{
+            UnbondDataIO
+        }
+    }, 
+    staking_actions::StakingActions, 
+    state::StakingData
 };
 
 #[derive(Decode, Encode, TypeInfo)]
@@ -240,25 +251,25 @@ impl StakingService {
     }
 
     // Returns all the bonds data from a user address
-    pub fn user_bonds(&self, user_address: ActorId) -> Option<Vec<BondData>> {
+    pub fn user_bonds(&self, user_address: ActorId) -> Option<Vec<BondDataIO>> {
         let staking_state_ref = StakingData::state_ref();
         staking_state_ref.bonded_data_by_user(user_address)
     }
 
     // Returns all the unbonds data from a user address
-    pub fn user_unbonds(&self, user_address: ActorId) -> Option<Vec<UnbondData>> {
+    pub fn user_unbonds(&self, user_address: ActorId) -> Option<Vec<UnbondDataIO>> {
         let staking_state_ref = StakingData::state_ref();
         staking_state_ref.unbonded_data_by_user(user_address)
     }
 
     // Returns all pending unbonds to be withdrawn from a user address
-    pub fn user_pending_unbonds(&self, user_address: ActorId) -> Option<Vec<UnbondData>> {
+    pub fn user_pending_unbonds(&self, user_address: ActorId) -> Option<Vec<UnbondDataIO>> {
         let staking_state_ref: &'static StakingData = StakingData::state_ref();
         staking_state_ref.user_pending_unbonds(user_address)
     }
 
     // Returns the unbonds that can be withdraw from a user
-    pub fn user_unbonds_to_withdraw(&self, user_address: ActorId) -> Option<Vec<UnbondData>> {
+    pub fn user_unbonds_to_withdraw(&self, user_address: ActorId) -> Option<Vec<UnbondDataIO>> {
         let staking_state_ref = StakingData::state_ref();
         staking_state_ref.user_unbonds_to_withdraw(user_address)
     }

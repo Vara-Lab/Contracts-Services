@@ -6,6 +6,12 @@ use sails_rs::{
 use vara_contract_utils::utils;
 
 #[derive(Debug, Encode, Decode, TypeInfo, Clone, Copy)]
+pub struct UnbondDataIO {
+    pub data: UnbondData,
+    pub id: u64
+}
+
+#[derive(Debug, Encode, Decode, TypeInfo, Clone, Copy)]
 pub struct UnbondData {
     pub amount: u128,
     pub unbond_at_timestamp: u64,

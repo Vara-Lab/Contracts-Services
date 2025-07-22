@@ -7,9 +7,15 @@ use crate::service_types::{staking_history::StakingHistory};
 
 use super::service_types::{
     user_data::UserData,
-    bond_data::BondData,
+    bond_data::{
+        BondData,
+        BondDataIO
+    },
     rebond_data::RebondData,
-    unbond_data::UnbondData,
+    unbond_data::{
+        UnbondData,
+        UnbondDataIO
+    },
     service_data::ServiceData
 };
 
@@ -118,7 +124,7 @@ impl StakingData {
         Some(total_unbond)
     }
 
-    pub fn bonded_data_by_user(&self, address: ActorId) -> Option<Vec<BondData>> {
+    pub fn bonded_data_by_user(&self, address: ActorId) -> Option<Vec<BondDataIO>> {
         if !self.user_is_registered(&address) {
             return None;
         }
@@ -130,13 +136,19 @@ impl StakingData {
         let bonded_data = user_data
             .bond_data_ids
             .iter()
-            .map(|bonded_id| self.bonded_data.get(bonded_id).unwrap().clone())
+            .map(|bonded_id| {
+                let data = self.bonded_data.get(bonded_id).unwrap().clone();
+                BondDataIO {
+                    data,
+                    id: *bonded_id
+                }
+            })
             .collect();
 
         Some(bonded_data)
     }
 
-    pub fn unbonded_data_by_user(&self, address: ActorId) -> Option<Vec<UnbondData>> {
+    pub fn unbonded_data_by_user(&self, address: ActorId) -> Option<Vec<UnbondDataIO>> {
         if !self.user_is_registered(&address) {
             return None;
         }
@@ -148,13 +160,16 @@ impl StakingData {
         let unbonded_data = user_data
             .unbond_data_ids
             .iter()
-            .map(|bonded_id| self.unbonded_data.get(bonded_id).unwrap().clone())
+            .map(|bonded_id| {
+                let data = self.unbonded_data.get(bonded_id).unwrap().clone();
+                UnbondDataIO { data, id:*bonded_id }
+            })
             .collect();
 
         Some(unbonded_data)
     }
 
-    pub fn user_pending_unbonds(&self, address: ActorId) -> Option<Vec<UnbondData>> {
+    pub fn user_pending_unbonds(&self, address: ActorId) -> Option<Vec<UnbondDataIO>> {
         if !self.user_is_registered(&address) {
             return None;
         }
@@ -183,13 +198,16 @@ impl StakingData {
 
         let pending_unbonds = pending_unbonds_id
             .into_iter()
-            .map(|unbond_id| self.unbonded_data.get(&unbond_id).unwrap().clone())
+            .map(|unbond_id| {
+                let data = self.unbonded_data.get(&unbond_id).unwrap().clone();
+                UnbondDataIO { data, id: unbond_id }
+            })
             .collect();
 
         Some(pending_unbonds)
     }
 
-    pub fn user_unbonds_to_withdraw(&self, address: ActorId) -> Option<Vec<UnbondData>> {
+    pub fn user_unbonds_to_withdraw(&self, address: ActorId) -> Option<Vec<UnbondDataIO>> {
         if !self.user_is_registered(&address) {
             return None;
         }
@@ -218,7 +236,10 @@ impl StakingData {
 
         let pending_unbonds = pending_unbonds_id
             .into_iter()
-            .map(|unbond_id| self.unbonded_data.get(&unbond_id).unwrap().clone())
+            .map(|unbond_id| {
+                let data = self.unbonded_data.get(&unbond_id).unwrap().clone();
+                UnbondDataIO { data, id: unbond_id }
+            })
             .collect();
 
         Some(pending_unbonds)
