@@ -188,7 +188,7 @@ impl StakingData {
                         .get(unbond_id)
                         .unwrap();
 
-                    unbond_data.can_rebond()
+                    !unbond_data.rebonded && !unbond_data.withdrawn
                 } else {
                     false
                 }
