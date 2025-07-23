@@ -73,7 +73,6 @@ impl StakingActions {
 
         let _ = StakingActions::send_to_built_in_actor(0, payload).await?;
 
-
         user_data.new_rebond(rebond_id, bond_id, value)?;
         user_data.add_to_history(StakingHistory::new_rebond(value));
 

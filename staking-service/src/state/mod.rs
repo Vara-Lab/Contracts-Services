@@ -188,7 +188,7 @@ impl StakingData {
                         .get(unbond_id)
                         .unwrap();
 
-                    !unbond_data.can_withdraw()
+                    unbond_data.can_rebond()
                 } else {
                     false
                 }
@@ -205,6 +205,34 @@ impl StakingData {
                 }
             })
             .collect();
+
+
+        // for unbond_id in user_data.unbond_data_ids.iter() {
+        //     if user_data.unbonds_already_withdrawn_by_id.contains(unbond_id) {
+        //         continue;
+        //     }
+
+        //     let unbond_data = self.unbonded_data
+        //         .get(unbond_id)
+        //         .unwrap();
+
+        //     if unbond_data.can_withdraw() {
+        //         continue;
+        //     }
+
+        //     pending_unbonds_id.push(*unbond_id);
+        // }
+
+        // let pending_unbonds = pending_unbonds_id
+        //     .into_iter()
+        //     .map(|unbond_id| {
+        //         let data = self.unbonded_data
+        //             .get(&unbond_id)
+        //             .unwrap()
+        //             .clone();
+        //         UnbondDataIO { data, id: unbond_id }
+        //     })
+        //     .collect();
 
         Some(pending_unbonds)
     }
@@ -240,6 +268,32 @@ impl StakingData {
                 }
             })
             .collect();
+
+        // let mut pending_unbonds_id = Vec::new();
+
+        // for bond_id in user_data.unbond_data_ids.iter() {
+        //     if user_data.unbonds_already_withdrawn_by_id.contains(bond_id) {
+        //         continue;
+        //     }
+
+        //     let unbond_data = self.unbonded_data
+        //         .get(bond_id)
+        //         .unwrap();
+
+        //     if !unbond_data.can_withdraw() {
+        //         continue;
+        //     }
+
+        //     pending_unbonds_id.push(*bond_id);
+        // }
+
+        // let pending_unbonds = pending_unbonds_id
+        //     .into_iter()
+        //     .map(|unbond_id| {
+        //         let data = self.unbonded_data.get(&unbond_id).unwrap().clone();
+        //         UnbondDataIO { data, id: unbond_id }
+        //     })
+        //     .collect();
 
         Some(unbonds_to_withdraw)
     }

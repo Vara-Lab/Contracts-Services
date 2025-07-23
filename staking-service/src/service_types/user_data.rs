@@ -29,9 +29,10 @@ impl UserData {
     /// Adds a new rebond to the user data
     pub fn new_rebond(&mut self, rebond_id: u64, bond_id: u64, amount: u128) -> Result<(), StakingError> {
         self.new_bond(bond_id, amount)?;
-        self.total_unbonded
+        let value = self.total_unbonded
             .checked_sub(amount)
             .ok_or(StakingError::UserUnbondUnderflow)?;
+        self.total_unbonded = value;
         self.rebond_data_ids.push(rebond_id);
 
         Ok(())
