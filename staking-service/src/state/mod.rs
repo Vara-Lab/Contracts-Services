@@ -3,7 +3,6 @@ use sails_rs::{
     collections::HashMap
 };
 use gstd::{actor_id, exec, msg};
-use crate::service_types::{staking_history::StakingHistory};
 
 use super::service_types::{
     user_data::UserData,
@@ -11,12 +10,16 @@ use super::service_types::{
         BondData,
         BondDataIO
     },
-    rebond_data::RebondData,
+    rebond_data::{
+        RebondData,
+        RebondDataIO
+    },
     unbond_data::{
         UnbondData,
         UnbondDataIO
     },
-    service_data::ServiceData
+    service_data::ServiceData,
+    staking_history::StakingHistory
 };
 
 pub static mut STAKING_CONTRACT_STATE: Option<StakingData> = None;
@@ -170,6 +173,30 @@ impl StakingData {
         Some(unbonded_data)
     }
 
+    pub fn rebonded_data_by_user(&self, address: ActorId) -> Option<Vec<RebondDataIO>> {
+        if !self.user_is_registered(&address) {
+            return None;
+        }
+
+        let user_data = self.users_data
+            .get(&address)
+            .unwrap();
+
+        let rebonded_data = user_data
+            .rebond_data_ids
+            .iter()
+            .map(|rebonded_id| {
+                let data = self.rebonded_data.get(rebonded_id).unwrap().clone();
+                RebondDataIO {
+                    data,
+                    id: *rebonded_id
+                }
+            })
+            .collect();
+
+        Some(rebonded_data)
+    }
+
     pub fn user_pending_unbonds(&self, address: ActorId) -> Option<Vec<UnbondDataIO>> {
         if !self.user_is_registered(&address) {
             return None;
@@ -188,7 +215,7 @@ impl StakingData {
                         .get(unbond_id)
                         .unwrap();
 
-                    !unbond_data.rebonded && !unbond_data.withdrawn
+                    unbond_data.can_rebond()
                 } else {
                     false
                 }
@@ -205,34 +232,6 @@ impl StakingData {
                 }
             })
             .collect();
-
-
-        // for unbond_id in user_data.unbond_data_ids.iter() {
-        //     if user_data.unbonds_already_withdrawn_by_id.contains(unbond_id) {
-        //         continue;
-        //     }
-
-        //     let unbond_data = self.unbonded_data
-        //         .get(unbond_id)
-        //         .unwrap();
-
-        //     if unbond_data.can_withdraw() {
-        //         continue;
-        //     }
-
-        //     pending_unbonds_id.push(*unbond_id);
-        // }
-
-        // let pending_unbonds = pending_unbonds_id
-        //     .into_iter()
-        //     .map(|unbond_id| {
-        //         let data = self.unbonded_data
-        //             .get(&unbond_id)
-        //             .unwrap()
-        //             .clone();
-        //         UnbondDataIO { data, id: unbond_id }
-        //     })
-        //     .collect();
 
         Some(pending_unbonds)
     }
@@ -268,32 +267,6 @@ impl StakingData {
                 }
             })
             .collect();
-
-        // let mut pending_unbonds_id = Vec::new();
-
-        // for bond_id in user_data.unbond_data_ids.iter() {
-        //     if user_data.unbonds_already_withdrawn_by_id.contains(bond_id) {
-        //         continue;
-        //     }
-
-        //     let unbond_data = self.unbonded_data
-        //         .get(bond_id)
-        //         .unwrap();
-
-        //     if !unbond_data.can_withdraw() {
-        //         continue;
-        //     }
-
-        //     pending_unbonds_id.push(*bond_id);
-        // }
-
-        // let pending_unbonds = pending_unbonds_id
-        //     .into_iter()
-        //     .map(|unbond_id| {
-        //         let data = self.unbonded_data.get(&unbond_id).unwrap().clone();
-        //         UnbondDataIO { data, id: unbond_id }
-        //     })
-        //     .collect();
 
         Some(unbonds_to_withdraw)
     }

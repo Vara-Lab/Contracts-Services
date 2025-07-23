@@ -3,6 +3,12 @@ use sails_rs::{
     gstd::exec
 };
 
+#[derive(Debug, Encode, Decode, TypeInfo)]
+pub struct RebondDataIO {
+    pub data: RebondData,
+    pub id: u64
+}
+
 #[derive(Debug, Encode, Decode, TypeInfo, Clone, Copy)]
 pub struct RebondData {
     pub amount: u128,

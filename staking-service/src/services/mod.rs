@@ -62,6 +62,20 @@ impl StakingService {
         Self
     }
 
+    /// Adds a new admin to the contract state
+    pub fn add_admin(&mut self, address: ActorId) -> StakingResponse {
+        let source = msg::source();
+        let state = StakingData::state_mut();
+
+        if !state.is_admin(source) {
+            utils::panic(StakingError::ActionOnlyForAdmins);
+        }
+
+        state.admins.push(address);
+
+        StakingResponse::AdminAdded(address)
+    }
+
     /// Locks the specified amount of tokens (`value`) for staking purposes.
     /// Optionally, sets the reward destination (`payee`) which can be a stash, controller, or program.
     pub async fn bond(&mut self) -> StakingResponse {
@@ -287,5 +301,6 @@ pub enum StakingResponse {
     Rebond(u128),
     Withdraw(u128),
     PayeeSet,
-    RewardsCollected
+    RewardsCollected,
+    AdminAdded(ActorId)
 }

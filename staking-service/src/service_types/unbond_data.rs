@@ -72,10 +72,12 @@ impl UnbondData {
     }
 
     pub fn can_rebond(&self) -> bool {
-        if self.can_withdraw() {
+        if self.withdrawn || self.rebonded {
             return false;
         }
 
-        true
+        let current_block = exec::block_height() as u64;
+
+        self.can_withdraw_at_block > current_block
     }
 }
