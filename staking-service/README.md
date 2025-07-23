@@ -29,7 +29,7 @@ It contains eight commands and nine queries methods:
 - Queries:
     + **num_of_eras_to_get_rewards**: This query returns the number of eras available to request rewards (if any).
     + **nominations**: This query returns the addresses of the validators that were nominated.
-    + **user_history**: This query returns the user's history
+    + **user_history**: This query returns the user's history.
     + **user_total_bond**: Returns the total number of tokens bonded to the specified user.
     + **user_total_unbond**: returns the total number of tokens that are in the process of being unbonded.
     + **user_bonds**: returns the information of each bond that the user has.
