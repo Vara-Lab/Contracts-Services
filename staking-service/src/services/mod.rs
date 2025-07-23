@@ -264,7 +264,7 @@ impl StakingService {
 
     // Returns all pending unbonds to be withdrawn from a user address
     pub fn user_pending_unbonds(&self, user_address: ActorId) -> Option<Vec<UnbondDataIO>> {
-        let staking_state_ref: &'static StakingData = StakingData::state_ref();
+        let staking_state_ref = StakingData::state_ref();
         staking_state_ref.user_pending_unbonds(user_address)
     }
 

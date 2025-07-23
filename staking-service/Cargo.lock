@@ -5131,7 +5131,7 @@ checksum = "ba73ea9cf16a25df0c8caa16c51acb937d5712a8429db78a3ee29d5dcacd3a65"
 [[package]]
 name = "vara-contract-utils"
 version = "0.1.0"
-source = "git+https://github.com/Vara-Lab/Vara-Contract-Utils#ffd4fbb9ef9dc96262ad319c66c4e380647b2eb7"
+source = "git+https://github.com/Vara-Lab/Vara-Contract-Utils#88014db57619aee66652059cd8f2981bf74cab1b"
 dependencies = [
  "gstd",
 ]

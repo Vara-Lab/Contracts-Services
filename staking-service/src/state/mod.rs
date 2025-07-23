@@ -2,7 +2,7 @@ use sails_rs::{
     prelude::*,
     collections::HashMap
 };
-use gstd::{actor_id, exec};
+use gstd::{actor_id, exec, msg};
 use crate::service_types::{staking_history::StakingHistory};
 
 use super::service_types::{
@@ -62,6 +62,7 @@ impl StakingData {
         state.on_mainnet = on_mainnet;
         state.service_data = ServiceData::new(on_mainnet);
         state.reward_account = Some(exec::program_id());
+        state.admins.push(msg::source());
 
         unsafe {
             STAKING_CONTRACT_STATE = Some(state)
@@ -180,7 +181,7 @@ impl StakingData {
 
         let mut pending_unbonds_id = Vec::new();
 
-        for unbond_id in user_data.bond_data_ids.iter() {
+        for unbond_id in user_data.unbond_data_ids.iter() {
             if user_data.unbonds_already_withdrawn_by_id.contains(unbond_id) {
                 continue;
             }
@@ -199,7 +200,10 @@ impl StakingData {
         let pending_unbonds = pending_unbonds_id
             .into_iter()
             .map(|unbond_id| {
-                let data = self.unbonded_data.get(&unbond_id).unwrap().clone();
+                let data = self.unbonded_data
+                    .get(&unbond_id)
+                    .unwrap()
+                    .clone();
                 UnbondDataIO { data, id: unbond_id }
             })
             .collect();
@@ -218,7 +222,7 @@ impl StakingData {
 
         let mut pending_unbonds_id = Vec::new();
 
-        for bond_id in user_data.bond_data_ids.iter() {
+        for bond_id in user_data.unbond_data_ids.iter() {
             if user_data.unbonds_already_withdrawn_by_id.contains(bond_id) {
                 continue;
             }
