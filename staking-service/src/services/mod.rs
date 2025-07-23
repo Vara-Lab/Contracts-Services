@@ -163,9 +163,9 @@ impl StakingService {
 
         let amount = result.unwrap();
 
-        let _ = self.emit_event(StakingEvents::Rebond { user: source, rebond: amount });
+        let _ = self.emit_event(StakingEvents::Rebond { user: source, rebond: amount.1 });
 
-        StakingResponse::Rebond(amount)
+        StakingResponse::Rebond(amount.1)
     }
 
     /// Finalizes the unbonding process by withdrawing tokens that have completed

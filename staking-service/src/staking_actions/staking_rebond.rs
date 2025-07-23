@@ -14,7 +14,7 @@ use crate::{
 };
 
 impl StakingActions {
-    pub async fn rebond(unbond_id: u64, address: ActorId) -> Result<u128, StakingError> {
+    pub async fn rebond(unbond_id: u64, address: ActorId) -> Result<(u64, u128), StakingError> {
         let staking_state_mut = StakingData::state_mut();
 
         let user_data = staking_state_mut
@@ -85,6 +85,6 @@ impl StakingActions {
             .entry(unbond_id)
             .and_modify(|unbond_data| unbond_data.rebonded = true);
 
-        Ok(value)
+        Ok((rebond_id, value))
     }
 }

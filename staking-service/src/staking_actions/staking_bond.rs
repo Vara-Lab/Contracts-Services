@@ -43,7 +43,7 @@ impl StakingActions {
         Some(bonded_data)
     }
 
-    pub async fn bond(value: u128, address: ActorId) -> Result<(), StakingError> {
+    pub async fn bond(value: u128, address: ActorId) -> Result<u64, StakingError> {
         StakingActions::check_value(value)?;
 
         let staking_state_mut = StakingData::state_mut();
@@ -106,6 +106,6 @@ impl StakingActions {
         staking_state_mut.current_bonded_id = current_bonded_id;
         staking_state_mut.has_bonded_any = true;
 
-        Ok(())
+        Ok(bonded_id)
     }
 }

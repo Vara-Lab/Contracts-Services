@@ -42,7 +42,7 @@ impl StakingActions {
         Some(unbonded_data)
     }
     
-    pub async fn unbond(value: u128, address: ActorId) -> Result<(), StakingError> {
+    pub async fn unbond(value: u128, address: ActorId) -> Result<u64, StakingError> {
         StakingActions::check_value(value)?;
 
         let staking_state_mut = StakingData::state_mut();
@@ -88,6 +88,6 @@ impl StakingActions {
         staking_state_mut.current_unbonded_id = current_unbonded_id;
         staking_state_mut.unbonded_data.insert(unbond_id, unbond_data);
 
-        Ok(())
+        Ok(unbond_id)
     }
 }
