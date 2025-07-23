@@ -63,7 +63,7 @@ impl UnbondData {
 
     pub fn can_withdraw(&self) -> bool {
         if self.withdrawn || self.rebonded {
-            return false;
+            return false;   
         }
         
         let current_block = exec::block_height() as u64;

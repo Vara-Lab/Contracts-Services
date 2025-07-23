@@ -9,13 +9,7 @@ use crate::{
         built_in::RewardAccount, staking_errors::StakingError
     }, 
     service_types::{
-        bond_data::{
-            BondDataIO
-        }, 
-        staking_history::StakingHistory, 
-        unbond_data::{
-            UnbondDataIO
-        }
+        bond_data::BondDataIO, rebond_data::RebondDataIO, staking_history::StakingHistory, unbond_data::UnbondDataIO
     }, 
     staking_actions::StakingActions, 
     state::StakingData
@@ -274,6 +268,11 @@ impl StakingService {
     pub fn user_unbonds(&self, user_address: ActorId) -> Option<Vec<UnbondDataIO>> {
         let staking_state_ref = StakingData::state_ref();
         staking_state_ref.unbonded_data_by_user(user_address)
+    }
+
+    pub fn user_rebonds(&self, user_address: ActorId) -> Option<Vec<RebondDataIO>> {
+        let statking_state_ref = StakingData::state_ref();
+        statking_state_ref.rebonded_data_by_user(user_address)
     }
 
     // Returns all pending unbonds to be withdrawn from a user address
