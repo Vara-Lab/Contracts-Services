@@ -1,6 +1,6 @@
 use sails_rs::prelude::*;
 
-#[derive(Debug)]
+#[derive(Debug, Encode, Decode, TypeInfo)]
 pub enum StakingError {
     ContractEraIsNotSynchronized,
     ActionOnlyForAdmins,
