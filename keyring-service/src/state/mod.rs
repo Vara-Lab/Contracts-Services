@@ -1,3 +1,5 @@
+#![allow(static_mut_refs)]
+
 use sails_rs::{
     prelude::*,
     collections::HashMap
@@ -170,6 +172,8 @@ impl KeyringAccounts {
 
 // # Struct to store the locked keyring data
 #[derive(Encode, Decode, TypeInfo, Clone, Default)]
+#[codec(crate = sails_rs::scale_codec)]
+#[scale_info(crate = sails_rs::scale_info)]
 pub struct KeyringData {
     address: String,
     encoded: String,

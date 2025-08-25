@@ -4,11 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-gstd = "=1.8.1"
-sails-rs = "=0.8.1"
-parity-scale-codec = { version = "3.6", default-features = false }
-scale-info = { version = "2.11.6", default-features = false }
+gstd = "1.9.0"
+sails-rs = "0.9.0"
 
 [dev-dependencies]
-gtest = "1.8.0"
-gear-core = "=1.8.1"
+gtest = "1.9.0"
+gear-core = "1.9.0"
